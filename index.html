@@ -566,87 +566,8 @@ document.getElementById('target-school-input').addEventListener('input', functio
                                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">211英语词汇练习</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-primary">211科目</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">50题</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-warning">中等</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <button class="text-primary hover:text-blue-800 mr-3">开始练习</button>
-                                        <button class="text-gray-600 hover:text-gray-900">查看详情</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">英汉互译实战练习</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-secondary">357科目</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">30题</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-danger">困难</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <button class="text-primary hover:text-blue-800 mr-3">开始练习</button>
-                                        <button class="text-gray-600 hover:text-gray-900">查看详情</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">百科知识选择题</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-warning">448科目</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">100题</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-secondary">简单</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <button class="text-primary hover:text-blue-800 mr-3">开始练习</button>
-                                        <button class="text-gray-600 hover:text-gray-900">查看详情</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">英语阅读理解专项</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-primary">211科目</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">20题</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-warning">中等</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <button class="text-primary hover:text-blue-800 mr-3">开始练习</button>
-                                        <button class="text-gray-600 hover:text-gray-900">查看详情</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">翻译理论与实践</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-secondary">357科目</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">40题</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="badge badge-danger">困难</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <button class="text-primary hover:text-blue-800 mr-3">开始练习</button>
-                                        <button class="text-gray-600 hover:text-gray-900">查看详情</button>
-                                    </td>
-                                </tr>
+                            <tbody id="question-bank-list" class="bg-white divide-y divide-gray-200">
+                                <!-- 题库列表将通过JavaScript动态生成 -->
                             </tbody>
                         </table>
                     </div>
@@ -1513,15 +1434,14 @@ document.getElementById('target-school-input').addEventListener('input', functio
             
             // 显示用户列表
             function displayUsers() {
-                const userList = document.getElementById('user-list');
+                const userList = document.getElementById('users-table-body');
                 userList.innerHTML = '';
                 
                 users.forEach(user => {
                     const userRow = document.createElement('tr');
                     userRow.innerHTML = `
-                        <td>${user.id}</td>
                         <td>${user.username}</td>
-                        <td>${user.password}</td>
+                        <td>${user.role}</td>
                         <td>
                             <button class="btn-primary text-sm px-3 py-1 mr-2 edit-user-btn" data-id="${user.id}">编辑</button>
                             <button class="btn-danger text-sm px-3 py-1 delete-user-btn" data-id="${user.id}">删除</button>
@@ -1638,26 +1558,148 @@ document.getElementById('target-school-input').addEventListener('input', functio
                 
                 // 获取表单数据
                 const questionBankName = document.getElementById('question-bank-name').value;
-                const subject = document.getElementById('subject').value;
-                const difficulty = document.getElementById('difficulty').value;
+                const subject = document.getElementById('question-subject').value;
+                const difficulty = document.getElementById('question-difficulty').value;
                 const questionType = document.getElementById('question-type').value;
-                const file = document.getElementById('question-file').files[0];
+                const content = document.getElementById('question-content').value;
+                const answer = document.getElementById('question-answer').value;
+                const explanation = document.getElementById('question-explanation').value;
                 
                 // 简单验证
-                if (!questionBankName || !subject || !difficulty || !questionType || !file) {
-                    alert('请填写所有字段并选择文件！');
+                if (!questionBankName || !subject || !difficulty || !questionType || !content || !answer) {
+                    alert('请填写所有必填字段！');
                     return;
                 }
                 
-                // 模拟文件上传（实际应用中应该使用后端API）
-                alert('题库上传成功！\n题库名称：' + questionBankName + '\n科目：' + subject + '\n难度：' + difficulty + '\n题型：' + questionType + '\n文件名：' + file.name);
+                // 获取现有题库数据或创建新数组
+                let questionBanks = JSON.parse(localStorage.getItem('questionBanks') || '[]');
+                
+                // 创建新题目对象
+                const newQuestion = {
+                    id: Date.now(), // 使用时间戳作为唯一ID
+                    bankName: questionBankName,
+                    subject: subject,
+                    difficulty: difficulty,
+                    type: questionType,
+                    content: content,
+                    answer: answer,
+                    explanation: explanation || '',
+                    createdAt: new Date().toISOString()
+                };
+                
+                // 查找对应的题库，如果不存在则创建新题库
+                let targetBank = questionBanks.find(bank => bank.name === questionBankName && bank.subject === subject);
+                
+                if (targetBank) {
+                    // 如果题库已存在，添加新题目
+                    targetBank.questions.push(newQuestion);
+                } else {
+                    // 如果题库不存在，创建新题库并添加题目
+                    questionBanks.push({
+                        id: Date.now(),
+                        name: questionBankName,
+                        subject: subject,
+                        questions: [newQuestion]
+                    });
+                }
+                
+                // 保存到localStorage
+                localStorage.setItem('questionBanks', JSON.stringify(questionBanks));
+                
+                alert('题目上传成功！');
                 
                 // 清空表单
                 this.reset();
+                
+                // 更新题库列表显示
+                displayQuestionBanks();
             });
             
             // 初始化
             displayUsers();
+            
+            // 添加用户按钮点击事件
+            const addUserBtn = document.getElementById('add-user-btn');
+            const addUserModal = document.getElementById('add-user-modal');
+            const closeAddModal = document.getElementById('close-add-modal');
+            
+            addUserBtn.addEventListener('click', function() {
+                addUserModal.classList.remove('hidden');
+            });
+            
+            closeAddModal.addEventListener('click', function() {
+                addUserModal.classList.add('hidden');
+            });
+            
+            // 点击添加用户模态框外部关闭模态框
+            window.addEventListener('click', function(e) {
+                if (e.target === addUserModal) {
+                    addUserModal.classList.add('hidden');
+                }
+            });
+            
+            // 显示题库列表
+            function displayQuestionBanks() {
+                const questionBanks = JSON.parse(localStorage.getItem('questionBanks')) || [];
+                const questionBankList = document.getElementById('question-bank-list');
+                
+                if (!questionBankList) return;
+                
+                questionBankList.innerHTML = '';
+                
+                questionBanks.forEach(bank => {
+                    const row = document.createElement('tr');
+                    
+                    // 获取科目徽章类
+                    let subjectBadgeClass = 'badge-primary';
+                    if (bank.subject === '357') subjectBadgeClass = 'badge-secondary';
+                    if (bank.subject === '448') subjectBadgeClass = 'badge-warning';
+                    
+                    // 获取难度徽章类
+                    let difficultyBadgeClass = 'badge-secondary'; // 简单
+                    if (bank.difficulty === 'medium') difficultyBadgeClass = 'badge-warning'; // 中等
+                    if (bank.difficulty === 'hard') difficultyBadgeClass = 'badge-danger'; // 困难
+                    
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">${bank.name}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="badge ${subjectBadgeClass}">${bank.subject}科目</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${bank.questions ? bank.questions.length : 0}题</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="badge ${difficultyBadgeClass}">${bank.difficulty === 'easy' ? '简单' : bank.difficulty === 'medium' ? '中等' : '困难'}</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <button class="text-primary hover:text-blue-800 mr-3 start-practice-btn" data-bank-id="${bank.id}">开始练习</button>
+                            <button class="text-gray-600 hover:text-gray-900">查看详情</button>
+                        </td>
+                    `;
+                    
+                    questionBankList.appendChild(row);
+                });
+                
+                // 重新绑定开始练习按钮事件
+                bindPracticeButtons();
+            }
+
+            // 绑定开始练习按钮事件
+            function bindPracticeButtons() {
+                const startPracticeBtns = document.querySelectorAll('.start-practice-btn');
+                startPracticeBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const bankId = this.dataset.bankId;
+                        // 这里可以添加开始练习的逻辑
+                        console.log('开始练习题库:', bankId);
+                    });
+                });
+            }
+            
+            // 页面加载时显示题库列表
+            document.addEventListener('DOMContentLoaded', function() {
+                displayQuestionBanks();
+            });
             
             // 题库上传模态框
             const uploadQuestionBtn = document.getElementById('upload-question-btn');
@@ -1718,6 +1760,9 @@ document.getElementById('target-school-input').addEventListener('input', functio
             });
             
             // 学习时长统计图表
+            // 从localStorage获取真实学习时长数据，如果没有则使用默认空数据
+            const studyTimeData = JSON.parse(localStorage.getItem('studyTimeData')) || [0, 0, 0, 0, 0, 0, 0];
+            
             const studyTimeCtx = document.getElementById('studyTimeChart').getContext('2d');
             const studyTimeChart = new Chart(studyTimeCtx, {
                 type: 'bar',
@@ -1725,7 +1770,7 @@ document.getElementById('target-school-input').addEventListener('input', functio
                     labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
                     datasets: [{
                         label: '学习时长（分钟）',
-                        data: [45, 60, 30, 90, 45, 120, 75],
+                        data: studyTimeData,
                         backgroundColor: '#3B82F6',
                         borderRadius: 4
                     }]
@@ -1815,6 +1860,32 @@ document.getElementById('target-school-input').addEventListener('input', functio
         });
     </script>
     
+    <!-- 添加用户模态框 -->
+    <div id="add-user-modal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-gray-800">添加用户</h3>
+                <button id="close-add-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="add-user-form">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">用户名</label>
+                    <input type="text" id="new-username" class="input-field" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+                    <input type="password" id="new-password" class="input-field" required>
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="btn-primary px-4 py-2 mr-2">添加</button>
+                    <button type="button" id="close-add-modal" class="btn-outline px-4 py-2">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- 编辑用户模态框 -->
     <div id="edit-user-modal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
