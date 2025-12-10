@@ -1443,19 +1443,20 @@ document.getElementById('target-school-input').addEventListener('input', functio
             
             // 登录功能
             const loginForm = document.getElementById('login-form');
-            const roleButtons = document.querySelectorAll('.role-button');
+            const roleButtons = document.querySelectorAll('[data-role]');
             let currentRole = 'user';
             
             // 角色选择
             roleButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    roleButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
+                    roleButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.classList.remove('text-primary', 'border-primary');
+                        btn.classList.add('text-gray-500');
+                    });
+                    this.classList.add('active', 'text-primary', 'border-primary');
+                    this.classList.remove('text-gray-500');
                     currentRole = this.getAttribute('data-role');
-                    
-                    // 更新登录提示
-                    const loginTitle = document.querySelector('#login-page h2');
-                    loginTitle.textContent = currentRole === 'user' ? '用户登录' : '开发者登录';
                 });
             });
             
