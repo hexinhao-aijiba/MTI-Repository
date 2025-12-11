@@ -203,8 +203,6 @@
                                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">角色</th>
                                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">状态</th>
                                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">激活时间</th>
-                                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">目标院校</th>
                                 </tr>
                             </thead>
                             <tbody id="users-table-body" class="bg-white divide-y divide-gray-200">
@@ -221,22 +219,96 @@
                     <p class="text-gray-600">上传和管理MTI考研题库</p>
                 </div>
                 
-                <div class="bg-white rounded-lg shadow-card p-6">
-                    <form id="upload-question-form" class="space-y-4">
+                <!-- 科目选择按钮 -->
+                <div id="subject-selection" class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-card p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">选择考试科目</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button type="button" id="subject-211" class="btn-primary text-left p-4">
+                                <i class="fa fa-book mr-2"></i>211 翻译硕士英语
+                            </button>
+                            <button type="button" id="subject-357" class="btn-primary text-left p-4">
+                                <i class="fa fa-language mr-2"></i>357 英语翻译基础
+                            </button>
+                            <button type="button" id="subject-448" class="btn-primary text-left p-4">
+                                <i class="fa fa-pencil mr-2"></i>448 汉语写作与百科知识
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 211 翻译硕士英语题目类型选择 -->
+                <div id="211-question-types" class="hidden space-y-6">
+                    <div class="bg-white rounded-lg shadow-card p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">211 翻译硕士英语 - 选择题型</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="question-bank-name" class="block text-sm font-medium text-gray-700 mb-1">题库名称</label>
-                                <input type="text" id="question-bank-name" name="question-bank-name" class="input-field" required>
-                            </div>
+                            <button type="button" id="211-single" class="btn-primary text-left p-4">
+                                <i class="fa fa-circle-o mr-2"></i>单选题
+                            </button>
+                            <button type="button" id="211-cloze" class="btn-primary text-left p-4">
+                                <i class="fa fa-bookmark mr-2"></i>完形填空
+                            </button>
+                            <button type="button" id="211-reading" class="btn-primary text-left p-4">
+                                <i class="fa fa-file-text-o mr-2"></i>阅读理解
+                            </button>
+                            <button type="button" id="211-writing" class="btn-primary text-left p-4">
+                                <i class="fa fa-pencil-square-o mr-2"></i>作文
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 357 英语翻译基础题目类型选择 -->
+                <div id="357-question-types" class="hidden space-y-6">
+                    <div class="bg-white rounded-lg shadow-card p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">357 英语翻译基础 - 选择题型</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- 可以根据需要添加357科目的题型 -->
+                            <button type="button" id="357-translation" class="btn-primary text-left p-4">
+                                <i class="fa fa-language mr-2"></i>翻译题
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 448 汉语写作与百科知识题目类型选择 -->
+                <div id="448-question-types" class="hidden space-y-6">
+                    <div class="bg-white rounded-lg shadow-card p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">448 汉语写作与百科知识 - 选择题型</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- 可以根据需要添加448科目的题型 -->
+                            <button type="button" id="448-knowledge" class="btn-primary text-left p-4">
+                                <i class="fa fa-question-circle mr-2"></i>百科知识题
+                            </button>
+                            <button type="button" id="448-writing" class="btn-primary text-left p-4">
+                                <i class="fa fa-pencil-square-o mr-2"></i>写作题
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 题目上传表单 -->
+                <div id="question-upload-form-container" class="hidden">
+                    <div class="bg-white rounded-lg shadow-card p-6">
+                        <h3 id="current-upload-title" class="text-lg font-semibold text-gray-800 mb-4">上传题目</h3>
+                        <form id="upload-question-form" class="space-y-4">
+                            <input type="hidden" id="current-subject" name="current-subject">
+                            <input type="hidden" id="current-question-type" name="current-question-type">
                             
-                            <div>
-                                <label for="question-subject" class="block text-sm font-medium text-gray-700 mb-1">科目</label>
-                                <select id="question-subject" name="question-subject" class="input-field" required>
-                                    <option value="211">211 翻译硕士英语</option>
-                                    <option value="357">357 英语翻译基础</option>
-                                    <option value="448">448 汉语写作与百科知识</option>
-                                </select>
-                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="question-bank-name" class="block text-sm font-medium text-gray-700 mb-1">题库名称</label>
+                                    <input type="text" id="question-bank-name" name="question-bank-name" class="input-field" required>
+                                </div>
+                                
+                                <div class="hidden">
+                                    <label for="question-subject" class="block text-sm font-medium text-gray-700 mb-1">科目</label>
+                                    <select id="question-subject" name="question-subject" class="input-field" required>
+                                        <option value="211">211 翻译硕士英语</option>
+                                        <option value="357">357 英语翻译基础</option>
+                                        <option value="448">448 汉语写作与百科知识</option>
+                                    </select>
+                                </div>
                             
                             <div>
                                 <label for="question-difficulty" class="block text-sm font-medium text-gray-700 mb-1">难度</label>
@@ -262,6 +334,39 @@
                         <div>
                             <label for="question-content" class="block text-sm font-medium text-gray-700 mb-1">题目内容</label>
                             <textarea id="question-content" name="question-content" rows="5" class="input-field" required></textarea>
+                        </div>
+                        
+                        <!-- 单选题Word文档上传功能 -->
+                        <div id="single-question-upload" class="hidden">
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">上传Word文档</label>
+                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                    <div class="space-y-1 text-center">
+                                        <i class="fa fa-file-word-o text-gray-400 text-3xl"></i>
+                                        <div class="flex text-sm text-gray-600">
+                                            <label for="word-file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-blue-500 focus-within:outline-none">
+                                                <span>选择文件</span>
+                                                <input id="word-file-upload" name="word-file-upload" type="file" accept=".doc,.docx" class="sr-only">
+                                            </label>
+                                            <p class="pl-1">或拖拽文件到此处</p>
+                                        </div>
+                                        <p class="text-xs text-gray-500">支持 .doc, .docx 格式</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 自动识别后的题干和选项 -->
+                            <div id="auto-identified-content" class="hidden">
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">识别后的题干</label>
+                                    <p id="identified-question" class="p-3 bg-gray-50 rounded-md border border-gray-200"></p>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">识别后的选项</label>
+                                    <div id="identified-options" class="space-y-2"></div>
+                                </div>
+                            </div>
                         </div>
                         
                         <div>
@@ -1455,19 +1560,17 @@
                         <td>${user.password}</td>
                         <td>${user.role}</td>
                         <td>
-                            <span class="px-2 py-1 rounded-full text-xs font-medium ${user.status === 'online' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}">
-                                ${user.status || '离线'}
+                            <span class="px-2 py-1 rounded-full text-xs font-medium ${user.status === 'online' ? 'bg-green-100 text-green-800' : user.status === 'frozen' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'}">
+                                ${user.status === 'online' ? '在线' : user.status === 'frozen' ? '冻结' : '离线'}
                             </span>
                         </td>
                         <td>
                             <button class="btn-primary text-sm px-3 py-1 mr-2 edit-user-btn" data-id="${user.id}">编辑</button>
                             <button class="btn-warning text-sm px-3 py-1 mr-2 toggle-status-btn" data-id="${user.id}">
-                                ${user.status === 'online' ? '冻结' : '激活'}
+                                ${user.status === 'frozen' ? '激活' : '冻结'}
                             </button>
                             <button class="btn-danger text-sm px-3 py-1 delete-user-btn" data-id="${user.id}">删除</button>
                         </td>
-                        <td>${user.activationTime || 'N/A'}</td>
-                        <td>${user.targetSchool || 'N/A'}</td>
                     `;
                     userList.appendChild(userRow);
                 });
@@ -1503,7 +1606,15 @@
                         const user = users.find(u => u.id === userId);
                         
                         // 切换用户状态
-                        user.status = user.status === 'online' ? 'offline' : 'online';
+                        if (user.status === 'frozen') {
+                            // 激活用户
+                            user.status = 'online';
+                            alert('用户已激活，可以正常登录');
+                        } else {
+                            // 冻结用户
+                            user.status = 'frozen';
+                            alert('用户已冻结，无法登录');
+                        }
                         localStorage.setItem('users', JSON.stringify(users));
                         displayUsers();
                     });
@@ -1541,9 +1652,7 @@
                     username: username,
                     password: password,
                     role: 'user',
-                    status: 'online',
-                    activationTime: new Date().toLocaleString(),
-                    targetSchool: ''
+                    status: 'online'
                 };
                 
                 users.push(newUser);
@@ -1592,6 +1701,187 @@
             document.getElementById('close-edit-modal').addEventListener('click', function() {
                 document.getElementById('edit-user-modal').classList.add('hidden');
             });
+            
+            // 题库上传功能 - 科目选择
+            const subjectSelection = document.getElementById('subject-selection');
+            const subject211Btn = document.getElementById('subject-211');
+            const subject357Btn = document.getElementById('subject-357');
+            const subject448Btn = document.getElementById('subject-448');
+            
+            const questionTypes211 = document.getElementById('211-question-types');
+            const questionTypes357 = document.getElementById('357-question-types');
+            const questionTypes448 = document.getElementById('448-question-types');
+            
+            const questionUploadFormContainer = document.getElementById('question-upload-form-container');
+            const currentUploadTitle = document.getElementById('current-upload-title');
+            const currentSubjectInput = document.getElementById('current-subject');
+            const currentQuestionTypeInput = document.getElementById('current-question-type');
+            
+            // 科目按钮点击事件
+            if (subject211Btn) {
+                subject211Btn.addEventListener('click', function() {
+                    hideAllSubjectScreens();
+                    questionTypes211.classList.remove('hidden');
+                    currentSubjectInput.value = '211';
+                });
+            }
+            
+            if (subject357Btn) {
+                subject357Btn.addEventListener('click', function() {
+                    hideAllSubjectScreens();
+                    questionTypes357.classList.remove('hidden');
+                    currentSubjectInput.value = '357';
+                });
+            }
+            
+            if (subject448Btn) {
+                subject448Btn.addEventListener('click', function() {
+                    hideAllSubjectScreens();
+                    questionTypes448.classList.remove('hidden');
+                    currentSubjectInput.value = '448';
+                });
+            }
+            
+            // 211 题型按钮点击事件
+            const type211SingleBtn = document.getElementById('211-single');
+            const type211ClozeBtn = document.getElementById('211-cloze');
+            const type211ReadingBtn = document.getElementById('211-reading');
+            const type211WritingBtn = document.getElementById('211-writing');
+            
+            if (type211SingleBtn) {
+                type211SingleBtn.addEventListener('click', function() {
+                    showUploadForm('211', 'single', '211 翻译硕士英语 - 单选题');
+                });
+            }
+            
+            if (type211ClozeBtn) {
+                type211ClozeBtn.addEventListener('click', function() {
+                    showUploadForm('211', 'cloze', '211 翻译硕士英语 - 完形填空');
+                });
+            }
+            
+            if (type211ReadingBtn) {
+                type211ReadingBtn.addEventListener('click', function() {
+                    showUploadForm('211', 'reading', '211 翻译硕士英语 - 阅读理解');
+                });
+            }
+            
+            if (type211WritingBtn) {
+                type211WritingBtn.addEventListener('click', function() {
+                    showUploadForm('211', 'writing', '211 翻译硕士英语 - 作文');
+                });
+            }
+            
+            // 辅助函数
+            function hideAllSubjectScreens() {
+                if (subjectSelection) subjectSelection.classList.add('hidden');
+                if (questionTypes211) questionTypes211.classList.add('hidden');
+                if (questionTypes357) questionTypes357.classList.add('hidden');
+                if (questionTypes448) questionTypes448.classList.add('hidden');
+                if (questionUploadFormContainer) questionUploadFormContainer.classList.add('hidden');
+            }
+            
+            function showUploadForm(subject, questionType, title) {
+                hideAllSubjectScreens();
+                if (questionUploadFormContainer) questionUploadFormContainer.classList.remove('hidden');
+                if (currentUploadTitle) currentUploadTitle.textContent = title;
+                if (currentSubjectInput) currentSubjectInput.value = subject;
+                if (currentQuestionTypeInput) currentQuestionTypeInput.value = questionType;
+                
+                // 设置表单中的科目和题型
+                const questionSubject = document.getElementById('question-subject');
+                const questionTypeSelect = document.getElementById('question-type');
+                if (questionSubject) questionSubject.value = subject;
+                if (questionTypeSelect) questionTypeSelect.value = questionType;
+                
+                // 根据题型显示/隐藏单选题上传模块
+                const singleChoiceUpload = document.getElementById('single-question-upload');
+                if (singleChoiceUpload) {
+                    if (questionType === 'single') {
+                        singleChoiceUpload.classList.remove('hidden');
+                    } else {
+                        singleChoiceUpload.classList.add('hidden');
+                    }
+                }
+            }
+            
+            // 题库上传功能 - Word文档处理
+            // 根据题型显示/隐藏Word上传选项
+            document.getElementById('question-type').addEventListener('change', function() {
+                const singleQuestionUpload = document.getElementById('single-question-upload');
+                if (this.value === 'single') {
+                    singleQuestionUpload.classList.remove('hidden');
+                } else {
+                    singleQuestionUpload.classList.add('hidden');
+                }
+            });
+            
+            // Word文档上传处理
+            document.getElementById('word-file-upload').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // 这里应该使用FileReader读取文件内容
+                    // 由于浏览器安全限制，我们模拟一个解析结果
+                    simulateWordDocumentParsing(file);
+                }
+            });
+            
+            // 模拟Word文档解析（实际项目中需要使用专门的库如 mammoth.js）
+            function simulateWordDocumentParsing(file) {
+                // 模拟从Word文档中识别的内容
+                const simulatedContent = {
+                    question: 'Which of the following is the correct spelling?',
+                    options: [
+                        'Accomodate',
+                        'Acommodate',
+                        'Accommodate',
+                        'Accomadate'
+                    ]
+                };
+                
+                // 显示识别结果
+                document.getElementById('identified-question').textContent = simulatedContent.question;
+                
+                const optionsContainer = document.getElementById('identified-options');
+                optionsContainer.innerHTML = '';
+                
+                simulatedContent.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'flex items-center p-3 bg-gray-50 rounded-md border border-gray-200';
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.className = 'h-4 w-4 text-primary focus:ring-primary';
+                    checkbox.value = String.fromCharCode(65 + index); // A, B, C, D...
+                    checkbox.addEventListener('change', function() {
+                        // 确保只能选择一个正确答案
+                        document.querySelectorAll('#identified-options input[type="checkbox"]').forEach(cb => {
+                            if (cb !== this) {
+                                cb.checked = false;
+                            }
+                        });
+                        
+                        // 更新正确答案字段
+                        if (this.checked) {
+                            document.getElementById('question-answer').value = this.value;
+                        }
+                    });
+                    
+                    const optionText = document.createElement('span');
+                    optionText.className = 'ml-3 text-sm font-medium text-gray-700';
+                    optionText.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+                    
+                    optionDiv.appendChild(checkbox);
+                    optionDiv.appendChild(optionText);
+                    optionsContainer.appendChild(optionDiv);
+                });
+                
+                // 更新题目内容字段
+                document.getElementById('question-content').value = simulatedContent.question;
+                
+                // 显示识别内容
+                document.getElementById('auto-identified-content').classList.remove('hidden');
+            }
             
             // 开发者功能 - 题库上传
             document.getElementById('upload-question-form').addEventListener('submit', function(e) {
