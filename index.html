@@ -43,13 +43,13 @@
                 transition: all 0.3s ease;
             }
             .card-hover {
-transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transform: translateY(0);
-            &:hover {
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                transform: translateY(0);
+            }
+            .card-hover:hover {
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
                 transform: translateY(-0.25rem);
-            }
             }
             .btn-primary {
                 background-color: var(--color-primary);
@@ -57,9 +57,9 @@ transition: all 0.3s ease;
                 padding: 0.5rem 1rem;
                 border-radius: 0.375rem;
                 transition: all 0.3s ease;
-                &:hover {
-                    background-color: #2563eb;
-                }
+            }
+            .btn-primary:hover {
+                background-color: #2563eb;
             }
             .btn-secondary {
                 background-color: var(--color-secondary);
@@ -67,9 +67,9 @@ transition: all 0.3s ease;
                 padding: 0.5rem 1rem;
                 border-radius: 0.375rem;
                 transition: all 0.3s ease;
-                &:hover {
-                    background-color: #059669;
-                }
+            }
+            .btn-secondary:hover {
+                background-color: #059669;
             }
             .btn-danger {
                 background-color: #EF4444;
@@ -77,9 +77,9 @@ transition: all 0.3s ease;
                 padding: 0.5rem 1rem;
                 border-radius: 0.375rem;
                 transition: all 0.3s ease;
-                &:hover {
-                    background-color: #dc2626;
-                }
+            }
+            .btn-danger:hover {
+                background-color: #dc2626;
             }
             .btn-outline {
                 border: 1px solid var(--color-primary);
@@ -87,10 +87,10 @@ transition: all 0.3s ease;
                 padding: 0.25rem 1rem;
                 border-radius: 0.375rem;
                 transition: all 0.3s ease;
-                &:hover {
-                    background-color: var(--color-primary);
-                    color: #ffffff;
-                }
+            }
+            .btn-outline:hover {
+                background-color: var(--color-primary);
+                color: #ffffff;
             }
             .nav-link {
                 display: flex;
@@ -119,10 +119,10 @@ transition: all 0.3s ease;
                 border: 1px solid #d1d5db;
                 border-radius: 0.375rem;
                 outline: none;
-                &:focus {
-                    --tw-ring-color: #3B82F6;
-                    border-color: transparent;
-                }
+            }
+            .input-field:focus {
+                --tw-ring-color: #3B82F6;
+                border-color: transparent;
             }
             .badge {
                 padding: 0.25rem 0.5rem;
@@ -403,193 +403,194 @@ transition: all 0.3s ease;
                                     </select>
                                 </div>
                             
-                            <div>
-                                <label for="question-difficulty" class="block text-sm font-medium text-gray-700 mb-1">难度</label>
-                                <select id="question-difficulty" name="question-difficulty" class="input-field" required>
-                                    <option value="easy">简单</option>
-                                    <option value="medium">中等</option>
-                                    <option value="hard">困难</option>
-                                </select>
+                                <div>
+                                    <label for="question-difficulty" class="block text-sm font-medium text-gray-700 mb-1">难度</label>
+                                    <select id="question-difficulty" name="question-difficulty" class="input-field" required>
+                                        <option value="easy">简单</option>
+                                        <option value="medium">中等</option>
+                                        <option value="hard">困难</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="question-type" class="block text-sm font-medium text-gray-700 mb-1">题型</label>
+                                    <select id="question-type" name="question-type" class="input-field" required>
+                                        <option value="single">单选题</option>
+                                        <option value="multiple">多选题</option>
+                                        <option value="blank">填空题</option>
+                                        <option value="translation">翻译题</option>
+                                        <option value="writing">写作题</option>
+                                    </select>
+                                </div>
                             </div>
                             
-                            <div>
-                                <label for="question-type" class="block text-sm font-medium text-gray-700 mb-1">题型</label>
-                                <select id="question-type" name="question-type" class="input-field" required>
-                                    <option value="single">单选题</option>
-                                    <option value="multiple">多选题</option>
-                                    <option value="blank">填空题</option>
-                                    <option value="translation">翻译题</option>
-                                    <option value="writing">写作题</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div id="common-question-fields" class="hidden">
-                            <label for="question-content" class="block text-sm font-medium text-gray-700 mb-1">题目内容</label>
-                            <textarea id="question-content" name="question-content" rows="5" class="input-field" required></textarea>
-                        </div>
-                        
-                        <!-- 完形填空上传功能 -->
-                        <div id="cloze-upload" class="hidden">
-                            <div>
-                                <label for="cloze-question-content" class="block text-sm font-medium text-gray-700 mb-1">题干内容</label>
-                                <textarea id="cloze-question-content" name="cloze-question-content" rows="5" class="input-field" required placeholder="请输入完形填空的题干内容，在需要填空的位置使用 [1], [2], ..., [10] 标记"></textarea>
+                            <div id="common-question-fields" class="hidden">
+                                <label for="question-content" class="block text-sm font-medium text-gray-700 mb-1">题目内容</label>
+                                <textarea id="question-content" name="question-content" rows="5" class="input-field" required></textarea>
                             </div>
                             
-                            <div class="mt-4">
-                                <h4 class="text-sm font-medium text-gray-700 mb-2">正确答案</h4>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <!-- 10个填空的正确答案输入框 -->
-                                    <div>
-                                        <label for="cloze-answer-1" class="block text-sm font-medium text-gray-700 mb-1">空 [1] 答案</label>
-                                        <input type="text" id="cloze-answer-1" name="cloze-answer-1" class="input-field" required>
-                                    </div>
-                                    <div>
-                                        <label for="cloze-answer-2" class="block text-sm font-medium text-gray-700 mb-1">空 [2] 答案</label>
-                                        <input type="text" id="cloze-answer-2" name="cloze-answer-2" class="input-field" required>
-                                    </div>
-                                    <div>
-                                        <label for="cloze-answer-3" class="block text-sm font-medium text-gray-700 mb-1">空 [3] 答案</label>
-                                        <input type="text" id="cloze-answer-3" name="cloze-answer-3" class="input-field" required>
-                                    </div>
-                                    <div>
-                                        <label for="cloze-answer-4" class="block text-sm font-medium text-gray-700 mb-1">空 [4] 答案</label>
-                                        <input type="text" id="cloze-answer-4" name="cloze-answer-4" class="input-field" required>
-                                    </div>
-                                    <div>
-                                        <label for="cloze-answer-5" class="block text-sm font-medium text-gray-700 mb-1">空 [5] 答案</label>
-                                        <input type="text" id="cloze-answer-5" name="cloze-answer-5" class="input-field" required>
-                                    </div>
-                                    <div>
-                                        <label for="cloze-answer-6" class="block text-sm font-medium text-gray-700 mb-1">空 [6] 答案</label>
-                                        <input type="text" id="cloze-answer-6" name="cloze-answer-6" class="input-field" required>
-                                    </div>
-                                    <div>
-                                        <label for="cloze-answer-7" class="block text-sm font-medium text-gray-700 mb-1">空 [7] 答案</label>
-                                        <input type="text" id="cloze-answer-7" name="cloze-answer-7" class="input-field" required>
-                                    </div>
-                                    <div>
-                                        <label for="cloze-answer-8" class="block text-sm font-medium text-gray-700 mb-1">空 [8] 答案</label>
-                                        <input type="text" id="cloze-answer-8" name="cloze-answer-8" class="input-field" required>
-                                    </div>
-                                    <div>
-                                        <label for="cloze-answer-9" class="block text-sm font-medium text-gray-700 mb-1">空 [9] 答案</label>
-                                        <input type="text" id="cloze-answer-9" name="cloze-answer-9" class="input-field" required>
-                                    </div>
-                                    <div>
-                                        <label for="cloze-answer-10" class="block text-sm font-medium text-gray-700 mb-1">空 [10] 答案</label>
-                                        <input type="text" id="cloze-answer-10" name="cloze-answer-10" class="input-field" required>
+                            <!-- 完形填空上传功能 -->
+                            <div id="cloze-upload" class="hidden">
+                                <div>
+                                    <label for="cloze-question-content" class="block text-sm font-medium text-gray-700 mb-1">题干内容</label>
+                                    <textarea id="cloze-question-content" name="cloze-question-content" rows="5" class="input-field" required placeholder="请输入完形填空的题干内容，在需要填空的位置使用 [1], [2], ..., [10] 标记"></textarea>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-medium text-gray-700 mb-2">正确答案</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <!-- 10个填空的正确答案输入框 -->
+                                        <div>
+                                            <label for="cloze-answer-1" class="block text-sm font-medium text-gray-700 mb-1">空 [1] 答案</label>
+                                            <input type="text" id="cloze-answer-1" name="cloze-answer-1" class="input-field" required>
+                                        </div>
+                                        <div>
+                                            <label for="cloze-answer-2" class="block text-sm font-medium text-gray-700 mb-1">空 [2] 答案</label>
+                                            <input type="text" id="cloze-answer-2" name="cloze-answer-2" class="input-field" required>
+                                        </div>
+                                        <div>
+                                            <label for="cloze-answer-3" class="block text-sm font-medium text-gray-700 mb-1">空 [3] 答案</label>
+                                            <input type="text" id="cloze-answer-3" name="cloze-answer-3" class="input-field" required>
+                                        </div>
+                                        <div>
+                                            <label for="cloze-answer-4" class="block text-sm font-medium text-gray-700 mb-1">空 [4] 答案</label>
+                                            <input type="text" id="cloze-answer-4" name="cloze-answer-4" class="input-field" required>
+                                        </div>
+                                        <div>
+                                            <label for="cloze-answer-5" class="block text-sm font-medium text-gray-700 mb-1">空 [5] 答案</label>
+                                            <input type="text" id="cloze-answer-5" name="cloze-answer-5" class="input-field" required>
+                                        </div>
+                                        <div>
+                                            <label for="cloze-answer-6" class="block text-sm font-medium text-gray-700 mb-1">空 [6] 答案</label>
+                                            <input type="text" id="cloze-answer-6" name="cloze-answer-6" class="input-field" required>
+                                        </div>
+                                        <div>
+                                            <label for="cloze-answer-7" class="block text-sm font-medium text-gray-700 mb-1">空 [7] 答案</label>
+                                            <input type="text" id="cloze-answer-7" name="cloze-answer-7" class="input-field" required>
+                                        </div>
+                                        <div>
+                                            <label for="cloze-answer-8" class="block text-sm font-medium text-gray-700 mb-1">空 [8] 答案</label>
+                                            <input type="text" id="cloze-answer-8" name="cloze-answer-8" class="input-field" required>
+                                        </div>
+                                        <div>
+                                            <label for="cloze-answer-9" class="block text-sm font-medium text-gray-700 mb-1">空 [9] 答案</label>
+                                            <input type="text" id="cloze-answer-9" name="cloze-answer-9" class="input-field" required>
+                                        </div>
+                                        <div>
+                                            <label for="cloze-answer-10" class="block text-sm font-medium text-gray-700 mb-1">空 [10] 答案</label>
+                                            <input type="text" id="cloze-answer-10" name="cloze-answer-10" class="input-field" required>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- 阅读题上传功能 -->
-                        <div id="reading-upload" class="hidden">
-                            <div>
-                                <label for="reading-passage" class="block text-sm font-medium text-gray-700 mb-1">阅读原文</label>
-                                <textarea id="reading-passage" name="reading-passage" rows="10" class="input-field" required placeholder="请输入阅读原文内容"></textarea>
+                            
+                            <!-- 阅读题上传功能 -->
+                            <div id="reading-upload" class="hidden">
+                                <div>
+                                    <label for="reading-passage" class="block text-sm font-medium text-gray-700 mb-1">阅读原文</label>
+                                    <textarea id="reading-passage" name="reading-passage" rows="10" class="input-field" required placeholder="请输入阅读原文内容"></textarea>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <label for="reading-questions" class="block text-sm font-medium text-gray-700 mb-1">题目和选项</label>
+                                    <div id="reading-questions-container" class="space-y-4">
+                                        <!-- 第一个阅读题 -->
+                                        <div class="bg-gray-50 p-4 rounded-md">
+                                            <div class="mb-3">
+                                                <label for="reading-question-1" class="block text-sm font-medium text-gray-700 mb-1">题目 1</label>
+                                                <textarea id="reading-question-1" name="reading-question-1" rows="3" class="input-field" required placeholder="请输入题目内容"></textarea>
+                                            </div>
+                                            
+                                            <div class="space-y-2">
+                                                <div class="flex items-center">
+                                                    <input type="checkbox" id="reading-option-correct-1-1" name="reading-option-correct-1-1" class="mr-2">
+                                                    <label for="reading-option-1-1" class="flex-1 text-sm font-medium text-gray-700 mb-1">选项 A</label>
+                                                </div>
+                                                <textarea id="reading-option-1-1" name="reading-option-1-1" rows="2" class="input-field ml-6" required placeholder="请输入选项内容"></textarea>
+                                                
+                                                <div class="flex items-center">
+                                                    <input type="checkbox" id="reading-option-correct-1-2" name="reading-option-correct-1-2" class="mr-2">
+                                                    <label for="reading-option-1-2" class="flex-1 text-sm font-medium text-gray-700 mb-1">选项 B</label>
+                                                </div>
+                                                <textarea id="reading-option-1-2" name="reading-option-1-2" rows="2" class="input-field ml-6" required placeholder="请输入选项内容"></textarea>
+                                                
+                                                <div class="flex items-center">
+                                                    <input type="checkbox" id="reading-option-correct-1-3" name="reading-option-correct-1-3" class="mr-2">
+                                                    <label for="reading-option-1-3" class="flex-1 text-sm font-medium text-gray-700 mb-1">选项 C</label>
+                                                </div>
+                                                <textarea id="reading-option-1-3" name="reading-option-1-3" rows="2" class="input-field ml-6" required placeholder="请输入选项内容"></textarea>
+                                                
+                                                <div class="flex items-center">
+                                                    <input type="checkbox" id="reading-option-correct-1-4" name="reading-option-correct-1-4" class="mr-2">
+                                                    <label for="reading-option-1-4" class="flex-1 text-sm font-medium text-gray-700 mb-1">选项 D</label>
+                                                </div>
+                                                <textarea id="reading-option-1-4" name="reading-option-1-4" rows="2" class="input-field ml-6" required placeholder="请输入选项内容"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 添加/删除题目按钮 -->
+                                    <div class="mt-3 flex justify-between">
+                                        <button type="button" id="add-reading-question" class="btn-secondary">
+                                            <i class="fa fa-plus mr-1"></i>添加题目
+                                        </button>
+                                        <button type="button" id="remove-reading-question" class="btn-danger">
+                                            <i class="fa fa-minus mr-1"></i>删除题目
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             
-                            <div class="mt-4">
-                                <label for="reading-questions" class="block text-sm font-medium text-gray-700 mb-1">题目和选项</label>
-                                <div id="reading-questions-container" class="space-y-4">
-                                    <!-- 第一个阅读题 -->
-                                    <div class="bg-gray-50 p-4 rounded-md">
-                                        <div class="mb-3">
-                                            <label for="reading-question-1" class="block text-sm font-medium text-gray-700 mb-1">题目 1</label>
-                                            <textarea id="reading-question-1" name="reading-question-1" rows="3" class="input-field" required placeholder="请输入题目内容"></textarea>
-                                        </div>
-                                        
-                                        <div class="space-y-2">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="reading-option-correct-1-1" name="reading-option-correct-1-1" class="mr-2">
-                                                <label for="reading-option-1-1" class="flex-1 text-sm font-medium text-gray-700 mb-1">选项 A</label>
+                            <!-- 单选题Word文档上传功能 -->
+                            <div id="single-question-upload" class="hidden">
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">上传Word文档</label>
+                                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+                                            <i class="fa fa-file-word-o text-gray-400 text-3xl"></i>
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="word-file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-blue-500 focus-within:outline-none">
+                                                    <span>选择文件</span>
+                                                    <input id="word-file-upload" name="word-file-upload" type="file" accept=".doc,.docx" class="sr-only">
+                                                </label>
+                                                <p class="pl-1">或拖拽文件到此处</p>
                                             </div>
-                                            <textarea id="reading-option-1-1" name="reading-option-1-1" rows="2" class="input-field ml-6" required placeholder="请输入选项内容"></textarea>
-                                            
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="reading-option-correct-1-2" name="reading-option-correct-1-2" class="mr-2">
-                                                <label for="reading-option-1-2" class="flex-1 text-sm font-medium text-gray-700 mb-1">选项 B</label>
-                                            </div>
-                                            <textarea id="reading-option-1-2" name="reading-option-1-2" rows="2" class="input-field ml-6" required placeholder="请输入选项内容"></textarea>
-                                            
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="reading-option-correct-1-3" name="reading-option-correct-1-3" class="mr-2">
-                                                <label for="reading-option-1-3" class="flex-1 text-sm font-medium text-gray-700 mb-1">选项 C</label>
-                                            </div>
-                                            <textarea id="reading-option-1-3" name="reading-option-1-3" rows="2" class="input-field ml-6" required placeholder="请输入选项内容"></textarea>
-                                            
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="reading-option-correct-1-4" name="reading-option-correct-1-4" class="mr-2">
-                                                <label for="reading-option-1-4" class="flex-1 text-sm font-medium text-gray-700 mb-1">选项 D</label>
-                                            </div>
-                                            <textarea id="reading-option-1-4" name="reading-option-1-4" rows="2" class="input-field ml-6" required placeholder="请输入选项内容"></textarea>
+                                            <p class="text-xs text-gray-500">支持 .doc, .docx 格式</p>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <!-- 添加/删除题目按钮 -->
-                                <div class="mt-3 flex justify-between">
-                                    <button type="button" id="add-reading-question" class="btn-secondary">
-                                        <i class="fa fa-plus mr-1"></i>添加题目
-                                    </button>
-                                    <button type="button" id="remove-reading-question" class="btn-danger">
-                                        <i class="fa fa-minus mr-1"></i>删除题目
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 单选题Word文档上传功能 -->
-                        <div id="single-question-upload" class="hidden">
-                            <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">上传Word文档</label>
-                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                        <i class="fa fa-file-word-o text-gray-400 text-3xl"></i>
-                                        <div class="flex text-sm text-gray-600">
-                                            <label for="word-file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-blue-500 focus-within:outline-none">
-                                                <span>选择文件</span>
-                                                <input id="word-file-upload" name="word-file-upload" type="file" accept=".doc,.docx" class="sr-only">
-                                            </label>
-                                            <p class="pl-1">或拖拽文件到此处</p>
-                                        </div>
-                                        <p class="text-xs text-gray-500">支持 .doc, .docx 格式</p>
+                                <!-- 自动识别后的题干和选项 -->
+                                <div id="auto-identified-content" class="hidden">
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">识别后的题干</label>
+                                        <p id="identified-question" class="p-3 bg-gray-50 rounded-md border border-gray-200"></p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">识别后的选项</label>
+                                        <div id="identified-options" class="space-y-2"></div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- 自动识别后的题干和选项 -->
-                            <div id="auto-identified-content" class="hidden">
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">识别后的题干</label>
-                                    <p id="identified-question" class="p-3 bg-gray-50 rounded-md border border-gray-200"></p>
-                                </div>
-                                
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">识别后的选项</label>
-                                    <div id="identified-options" class="space-y-2"></div>
-                                </div>
+                            <div>
+                                <label for="question-answer" class="block text-sm font-medium text-gray-700 mb-1">正确答案</label>
+                                <textarea id="question-answer" name="question-answer" rows="3" class="input-field" required></textarea>
                             </div>
-                        </div>
-                        
-                        <div>
-                            <label for="question-answer" class="block text-sm font-medium text-gray-700 mb-1">正确答案</label>
-                            <textarea id="question-answer" name="question-answer" rows="3" class="input-field" required></textarea>
-                        </div>
-                        
-                        <div>
-                            <label for="question-explanation" class="block text-sm font-medium text-gray-700 mb-1">解析</label>
-                            <textarea id="question-explanation" name="question-explanation" rows="3" class="input-field"></textarea>
-                        </div>
-                        
-                        <div class="flex justify-end">
-                            <button type="submit" class="btn-primary">
-                                <i class="fa fa-upload mr-2"></i>上传题目
-                            </button>
-                        </div>
-                    </form>
+                            
+                            <div>
+                                <label for="question-explanation" class="block text-sm font-medium text-gray-700 mb-1">解析</label>
+                                <textarea id="question-explanation" name="question-explanation" rows="3" class="input-field"></textarea>
+                            </div>
+                            
+                            <div class="flex justify-end">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fa fa-upload mr-2"></i>上传题目
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </section>
             <!-- 首页 -->
@@ -2185,10 +2186,11 @@ transition: all 0.3s ease;
                     const singleQuestionUpload = document.getElementById('single-question-upload');
                     if (this.value === 'single') {
                         singleQuestionUpload.classList.remove('hidden');
-                } else {
-                    singleQuestionUpload.classList.add('hidden');
-                }
-            });
+                    } else {
+                        singleQuestionUpload.classList.add('hidden');
+                    }
+                });
+            }
             
             // Word文档上传处理
             document.getElementById('word-file-upload').addEventListener('change', function(e) {
@@ -2562,7 +2564,7 @@ transition: all 0.3s ease;
                     }
                 }
             });
-        // 修复：移除多余的右花括号，确保语法正确
+        });
     </script>
     
     <!-- 添加用户模态框 -->
