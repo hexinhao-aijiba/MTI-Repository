@@ -135,6 +135,13 @@
     <div id="app-container" class="hidden min-h-screen flex flex-col md:flex-row">
         <!-- 侧边导航栏 -->
         <aside class="w-full md:w-64 bg-white shadow-md md:min-h-screen p-4">
+            <div class="flex items-center justify-center md:justify-start mb-4 pt-2">
+                <div class="bg-primary text-white p-2 rounded-lg">
+                    <i class="fa fa-graduation-cap text-xl"></i>
+                </div>
+                <h1 class="text-xl font-bold ml-2 text-gray-800">MTI-Repository</h1>
+            </div>
+            
             <!-- 开发者端导航 -->
             <div id="developer-nav" class="hidden mt-4 pt-4 border-t border-gray-200">
                 <h3 class="text-sm font-semibold text-gray-700 mb-2 px-2">开发者管理</h3>
@@ -148,12 +155,6 @@
                         <span>题库上传</span>
                     </a>
                 </nav>
-            </div>
-            <div class="flex items-center justify-center md:justify-start mb-8 pt-2">
-                <div class="bg-primary text-white p-2 rounded-lg">
-                    <i class="fa fa-graduation-cap text-xl"></i>
-                </div>
-                <h1 class="text-xl font-bold ml-2 text-gray-800">MTI-Repository</h1>
             </div>
             
             <nav class="space-y-1">
@@ -174,26 +175,6 @@
                     <span>个人中心</span>
                 </a>
             </nav>
-            
-            <div class="mt-8 pt-4 border-t border-gray-200">
-                <div class="bg-blue-50 p-4 rounded-lg">
-                    <h3 class="font-medium text-gray-800 mb-2">用户统计信息</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-600">注册用户数量</span>
-                            <span id="total-users" class="text-xl font-bold text-primary">0</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-600">在线用户数量</span>
-                            <span id="online-users" class="text-xl font-bold text-green-500">0</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-600">用户学习总时长</span>
-                            <span id="total-study-time" class="text-xl font-bold text-purple-500">0分钟</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </aside>
         
         <!-- 主内容区 -->
@@ -304,75 +285,41 @@
             <!-- 首页 -->
             <section id="home" class="page active">
                 <div class="mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">欢迎回来，考研er！</h2>
-<p class="text-gray-600 font-bold text-right" id="target-school-container">金秋九月，<input type="text" class="border-b border-gray-400 focus:border-primary focus:outline-none px-2 py-1 w-24 text-center" placeholder="XX大学" id="target-school-input" />等你</p>
-<script>
-document.getElementById('target-school-input').addEventListener('input', function() {
-    if (this.value.trim() !== '') {
-        this.style.width = 'auto';
-        this.style.minWidth = '6rem';
-    } else {
-        this.style.width = '6rem';
-    }
-});
-</script>
-                    <p class="text-gray-600">继续你的MTI考研备考之旅</p>
+                    <h2 class="text-2xl font-bold text-gray-800">欢迎回来，开发者</h2>
                 </div>
                 
                 <!-- 学习概览卡片 -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <div class="bg-white rounded-lg shadow-card p-6 card-hover">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-semibold text-gray-800">今日学习</h3>
-                            <span class="badge badge-primary">进行中</span>
+                            <h3 class="text-lg font-semibold text-gray-800">注册用户</h3>
+                            <span class="badge badge-primary">总人数</span>
                         </div>
                         <div class="flex items-center">
-                            <div class="text-3xl font-bold text-primary">45</div>
+                            <div id="developer-total-users" class="text-3xl font-bold text-primary">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-card p-6 card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">题库总量</h3>
+                            <span class="badge badge-secondary">总题数</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div id="developer-total-questions" class="text-3xl font-bold text-secondary">0</div>
+                            <div class="ml-2 text-gray-600">题</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-card p-6 card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">使用时长</h3>
+                            <span class="badge badge-warning">总时长</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div id="developer-total-study-time" class="text-3xl font-bold text-warning">0</div>
                             <div class="ml-2 text-gray-600">分钟</div>
                         </div>
-                        <div class="mt-4">
-                            <div class="flex justify-between text-xs text-gray-600 mb-1">
-                                <span>目标: 60分钟</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-lg shadow-card p-6 card-hover">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-semibold text-gray-800">本周完成</h3>
-                            <span class="badge badge-secondary">已完成</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="text-3xl font-bold text-secondary">85</div>
-                            <div class="ml-2 text-gray-600">题</div>
-                        </div>
-                        <div class="mt-4">
-                            <div class="flex justify-between text-xs text-gray-600 mb-1">
-                                <span>正确率</span>
-                                <span>68%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-secondary h-2 rounded-full" style="width: 68%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-lg shadow-card p-6 card-hover">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-semibold text-gray-800">错题复习</h3>
-                            <span class="badge badge-warning">待完成</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="text-3xl font-bold text-warning">24</div>
-                            <div class="ml-2 text-gray-600">题</div>
-                        </div>
-                        <button class="mt-4 w-full btn-primary">
-                            <i class="fa fa-refresh mr-2"></i>开始复习
-                        </button>
                     </div>
                 </div>
                 
@@ -1327,6 +1274,8 @@ document.getElementById('target-school-input').addEventListener('input', functio
     <script>
         // 页面切换功能
         document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载完成时更新统计信息
+            updateUserStatistics();
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page');
             
@@ -1345,8 +1294,8 @@ document.getElementById('target-school-input').addEventListener('input', functio
                         if (page.id === targetPage) {
                             page.classList.remove('hidden');
                             
-                            // 当切换到用户管理页面时，更新用户统计信息
-                            if (targetPage === 'user-management') {
+                            // 当切换到用户管理页面或首页时，更新用户统计信息
+                            if (targetPage === 'user-management' || targetPage === 'home') {
                                 updateUserStatistics();
                             }
                         }
@@ -1463,16 +1412,35 @@ document.getElementById('target-school-input').addEventListener('input', functio
                 
                 // 注册用户数量
                 const totalUsers = users.length;
-                document.getElementById('total-users').textContent = totalUsers;
+                if (document.getElementById('total-users')) {
+                    document.getElementById('total-users').textContent = totalUsers;
+                }
+                if (document.getElementById('developer-total-users')) {
+                    document.getElementById('developer-total-users').textContent = totalUsers;
+                }
                 
                 // 在线用户数量
                 const onlineUsers = users.filter(user => user.status === 'online').length;
-                document.getElementById('online-users').textContent = onlineUsers;
+                if (document.getElementById('online-users')) {
+                    document.getElementById('online-users').textContent = onlineUsers;
+                }
+                
+                // 计算题库总量
+                const questionBanks = JSON.parse(localStorage.getItem('questionBanks') || '[]');
+                const totalQuestions = questionBanks.reduce((sum, bank) => sum + (bank.questions ? bank.questions.length : 0), 0);
+                if (document.getElementById('developer-total-questions')) {
+                    document.getElementById('developer-total-questions').textContent = totalQuestions;
+                }
                 
                 // 用户学习总时长
                 const studyTimeData = JSON.parse(localStorage.getItem('studyTimeData') || '[0, 0, 0, 0, 0, 0, 0]');
                 const totalStudyTime = studyTimeData.reduce((sum, time) => sum + time, 0);
-                document.getElementById('total-study-time').textContent = `${totalStudyTime}分钟`;
+                if (document.getElementById('total-study-time')) {
+                    document.getElementById('total-study-time').textContent = `${totalStudyTime}分钟`;
+                }
+                if (document.getElementById('developer-total-study-time')) {
+                    document.getElementById('developer-total-study-time').textContent = totalStudyTime;
+                }
             }
             
             // 显示用户列表
